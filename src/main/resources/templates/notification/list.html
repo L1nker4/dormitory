@@ -17,6 +17,9 @@
     <link rel="stylesheet" th:href="@{/asserts/css/skins/_all-skins.min.css}">
 
     <link rel="stylesheet" th:href="@{/asserts/plugins/iCheck/all.css}">
+    
+    <link rel="stylesheet" th:href="@{/asserts/css/dataTables.bootstrap.min.css}"/>
+
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -297,18 +300,6 @@
     </div>
 </div>
 
-<script>
-    $(function() {
-        $("#dataTable").dataTable({
-            "searching": false,
-            "lengthChange": false,
-            "ordering": false,
-            "deferRender": true
-
-        });
-    })
-</script>
-
 <script th:src="@{/asserts/js/jquery.min.js}"></script>
 
 <script th:src="@{/asserts/js/bootstrap.min.js}"></script>
@@ -326,5 +317,20 @@
 <script th:src="@{/asserts/plugins/iCheck/icheck.min.js}"></script>
 
 <script th:src="@{/asserts/js/notification/detail.js}"></script>
+
+<script th:src="@{/asserts/js/jquery.dataTables.min.js}"></script>
+
+<script th:src="@{/asserts/js/dataTables.bootstrap.min.js}"></script>
+<script>
+    $(function() {
+        $("#dataTable").dataTable({
+            "searching": false,
+            "lengthChange": false,
+            "ordering": false,
+            "deferRender": true
+
+        });
+    })
+</script>
 </body>
 </html>

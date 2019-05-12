@@ -238,10 +238,10 @@
                                     <div class="form-group">
                                         <input type="text" class="form-control required" id="studentName" name="title" placeholder="请输入标题">
                                     </div>
-                                    <div class="form-group">
-                                        <textarea id="editor" name="context" rows="10" cols="80">
-                                </textarea>
+                                    <div class="form-group" id="editor">
                                     </div>
+                                    <textarea id="context" name="context" style="display: none">
+                                    </textarea>
 
                                 </div>
                                 <div class="box-footer">
@@ -298,14 +298,17 @@
 
 <script th:src="@{/asserts/plugins/iCheck/icheck.min.js}"></script>
 
-<script th:src="@{/asserts/js/delete.js}"></script>
-
-<script th:src="@{/asserts/plugins/ckeditor/ckeditor.js}"></script>
+<script th:src="@{/asserts/js/wangEditor.min.js}"></script>
 
 <script>
-    $(function () {
-        CKEDITOR.replace('editor');
-    })
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    var $context = $('#context');
+    editor.customConfig.onchange = function (html){
+        $context.val(html);
+    };
+    editor.create();
+    $context.val(editor.txt.html());
 </script>
 
 <script type="text/javascript" th:inline="javascript"></script>
