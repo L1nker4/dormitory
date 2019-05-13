@@ -22,4 +22,6 @@ public interface NotificationService {
     Notification getOneNotification(String nid);
 
     void deleteNotification(String nid);
+
+    int getNumberOfNotification();
 }

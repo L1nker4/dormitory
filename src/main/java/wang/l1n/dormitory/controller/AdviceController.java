@@ -4,9 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import wang.l1n.dormitory.dto.BaseResult;
 import wang.l1n.dormitory.entity.Advice;
 import wang.l1n.dormitory.service.AdviceService;
@@ -54,6 +52,19 @@ public class AdviceController {
             baseResult.setStatus(404);
             baseResult.setMessage("程序异常，请重试");
         }
+        return baseResult;
+    }
+
+    /**
+     * 添加反馈意见
+     */
+    @RequestMapping(value = "/advice/add",method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult addAdvice(@RequestBody Advice advice){
+        BaseResult baseResult = new BaseResult();
+        adviceService.addAdvice(advice);
+        baseResult.setStatus(200);
+        baseResult.setMessage("添加成功");
         return baseResult;
     }
 

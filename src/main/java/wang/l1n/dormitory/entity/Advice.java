@@ -8,18 +8,18 @@ import java.util.Date;
  * @description：
  */
     public class Advice {
-        private String aid;
+        private int aid;
         private String title;
         private String context;
         private Integer sid;
         private Student student;
         private Date createTime;
 
-    public String getAid() {
+    public int getAid() {
         return aid;
     }
 
-    public void setAid(String aid) {
+    public void setAid(int aid) {
         this.aid = aid;
     }
 

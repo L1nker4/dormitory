@@ -10,9 +10,10 @@ import java.util.Date;
 public class Advertisement {
     private String aid;
     private String title;
+    private String context;
     private Date createTime;
     private Integer mid;
-    private String managerName;
+    private Manager manager;
 
     public String getAid() {
         return aid;
@@ -28,6 +29,14 @@ public class Advertisement {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
     }
 
     public Date getCreateTime() {
@@ -46,11 +55,11 @@ public class Advertisement {
         this.mid = mid;
     }
 
-    public String getManagerName() {
-        return managerName;
+    public Manager getManager() {
+        return manager;
     }
 
-    public void setManagerName(String managerName) {
-        this.managerName = managerName;
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 }

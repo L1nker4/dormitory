@@ -20,4 +20,8 @@ public interface AdviceMapper{
      * @return
      */
     Advice selectAdviceById(String aid);
+
+    void addAdvice(Advice advice);
+
+    int getAdviceNum();
 }

@@ -2,6 +2,8 @@ package wang.l1n.dormitory.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import wang.l1n.dormitory.entity.Advertisement;
 
 /**
  * @author ：L1nker4
@@ -19,5 +21,10 @@ public class AdvertisementController {
     @RequestMapping("add")
     public String toAdd(){
         return "advertisement/add";
+    }
+
+    @RequestMapping(value = "/doAdd",method = RequestMethod.POST)
+    public String doAdd(Advertisement advertisement){
+        return "advertisement/list";
     }
 }

@@ -39,4 +39,12 @@
                  INNER JOIN tb_student ON tb_advice.sid = tb_student.id
         where aid = #{aid}
     </select>
+
+    <insert id="addAdvice" parameterType="wang.l1n.dormitory.entity.Advice">
+        insert into tb_advice (title,context,create_time,sid) values (#{advice.title},#{advice.context},#{advice.createTime},#{advice.sid})
+    </insert>
+
+    <select id="getAdviceNum" resultType="int">
+        select count(*) from tb_advice as count
+    </select>
 </mapper>

@@ -27,4 +27,6 @@ public interface NotificationMapper {
     Notification selectNotificationById(String nid);
 
     void deleteById(String nid);
+
+    int getNumberOfNotification();
 }

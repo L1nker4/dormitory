@@ -40,13 +40,29 @@ public class NotificationServiceImpl implements NotificationService {
         return notificationMapper.selectAllNotification();
     }
 
+    /**
+     * 获取一个通知的详细信息
+     * @param nid
+     * @return
+     */
     @Override
     public Notification getOneNotification(String nid) {
         return notificationMapper.selectNotificationById(nid);
     }
 
+    /**
+     * 删除一条通知
+     * @param nid
+     */
     @Override
     public void deleteNotification(String nid) {
         notificationMapper.deleteById(nid);
     }
+
+    @Override
+    public int getNumberOfNotification() {
+        return notificationMapper.getNumberOfNotification();
+    }
+
+
 }

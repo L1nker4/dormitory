@@ -17,4 +17,12 @@ public interface AdviceService {
      * @return
      */
     Advice getAdviceById(String aid);
+
+    /**
+     * 添加建议
+     * @param advice
+     */
+    void addAdvice(Advice advice);
+
+    int getAdviceNum();
 }

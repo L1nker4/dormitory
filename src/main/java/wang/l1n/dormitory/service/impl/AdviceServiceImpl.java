@@ -6,6 +6,7 @@ import wang.l1n.dormitory.entity.Advice;
 import wang.l1n.dormitory.mapper.AdviceMapper;
 import wang.l1n.dormitory.service.AdviceService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,5 +32,17 @@ public class AdviceServiceImpl implements AdviceService {
     @Override
     public Advice getAdviceById(String aid) {
         return adviceMapper.selectAdviceById(aid);
+    }
+
+    @Override
+    public void addAdvice(Advice advice) {
+        Date date = new Date();
+        advice.setCreateTime(date);
+        adviceMapper.addAdvice(advice);
+    }
+
+    @Override
+    public int getAdviceNum() {
+        return adviceMapper.getAdviceNum();
     }
 }

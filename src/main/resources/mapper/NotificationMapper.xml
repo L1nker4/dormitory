@@ -38,4 +38,8 @@
         from tb_notification
         where nid = #{nid}
     </delete>
+
+    <select id="getNumberOfNotification" resultType="int">
+        SELECT count(*) from tb_notification as count
+    </select>
 </mapper>
