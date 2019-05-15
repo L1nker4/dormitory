@@ -221,7 +221,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li class="active">学生管理</li>
+                <li class="active">故障信息</li>
             </ol>
         </section>
 
@@ -234,41 +234,28 @@
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">学生列表</h3>
-                            <div class="row" style="padding-left: 15px;padding-top: 10px;">
-                                <a href="/student/add" type="button" class="btn btn-default btn-sm"><i
-                                        class="fa fa-plus">新增</i></a>&nbsp;&nbsp;
-                                <a href="#" type="button" class="btn btn-default btn-sm" onclick="deleteMutil()"><i
-                                        class="fa fa-plus">删除</i></a>&nbsp;&nbsp;
-                                <a href="#" type="button" class="btn btn-default btn-sm"><i
-                                        class="fa fa-upload">导入</i></a>&nbsp;&nbsp;
-                                <a href="#" type="button" class="btn btn-default btn-sm"><i
-                                        class="fa fa-download">导出</i></a>&nbsp;&nbsp;
-                            </div>
+                            <h3 class="box-title">故障列表</h3>
                         </div>
                         <div class="box-body">
                             <table id="dataTable" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th><input type="checkbox" class="minimal icheck_master"/></th>
-                                    <th>学号</th>
-                                    <th>姓名</th>
-                                    <th>班级</th>
-                                    <th>宿舍编号</th>
+                                    <th>编号</th>
+                                    <th>标题</th>
+                                    <th>宿舍名</th>
+                                    <th>提交时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="student:${student}">
-                                    <td><input th:id="${student.id}" type="checkbox" class="minimal"/></td>
-                                    <td th:text="${student.id}">Misc</td>
-                                    <td th:text="${student.name}">PSP browser</td>
-                                    <td th:text="${student.classname}">PSP</td>
-                                    <td th:text="${student.dormitory}">-</td>
+                                <tr th:each="malfunctions,malStat:${malfunctions}">
+                                    <td th:text="${malStat.index+1}"></td>
+                                    <td th:text="${malfunctions.title}">Misc</td>
+                                    <td th:text="${malfunctions.dormitoryName}">PSP browser</td>
+                                    <td th:text="${#dates.format(malfunctions.createTime, 'yyyy-MM-dd hh:mm:ss')}">PSP</td>
                                     <td>
-                                        <a href="#" type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit">编辑</i></a>
-                                        <button type="button" class="btn btn-danger btn-sm" th:onclick="'deleteOne('+${student.id}+')'"><i
-                                                class="fa fa-trash">删除</i></button>
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <i class="fa fa-search">查看</i></button>
                                     </td>
                                 </tr>
                             </table>

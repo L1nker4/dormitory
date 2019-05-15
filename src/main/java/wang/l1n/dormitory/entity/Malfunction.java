@@ -1,5 +1,7 @@
 package wang.l1n.dormitory.entity;
 
+import java.util.Date;
+
 /**
  * @author ：L1nker4
  * @date ： 创建于  2019/5/15 21:30
@@ -9,6 +11,7 @@ public class Malfunction {
     private int mid;
     private String title;
     private String context;
+    private Date createTime;
     private String dormitoryName;
 
     public int getMid() {
@@ -33,6 +36,14 @@ public class Malfunction {
 
     public void setContext(String context) {
         this.context = context;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getDormitoryName() {
