@@ -26,7 +26,7 @@ public class AdvertisementController {
     private AdvertisementService advertisementService;
 
     @RequestMapping("index")
-    public String idnex(Model model){
+    public String index(Model model){
         List<Advertisement> advertisements = advertisementService.getAdvertisementList();
         model.addAttribute("advertisement", advertisements);
         return "advertisement/list";
