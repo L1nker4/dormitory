@@ -6,4 +6,8 @@
     <insert id="insertAdvertisement" parameterType="wang.l1n.dormitory.entity.Advertisement">
         insert into tb_advertisement (title, context, create_time,mid) values (#{title},#{context},#{createTime},#{mid})
     </insert>
+    
+    <select id="getAdvertisementList" resultType="wang.l1n.dormitory.entity.Advertisement">
+        select * from tb_advertisement
+    </select>
 </mapper>
