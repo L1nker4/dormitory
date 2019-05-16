@@ -23,4 +23,9 @@ public class EventServiceImpl implements EventService {
     public List<Event> getEventList() {
         return eventMapper.getEventList();
     }
+
+    @Override
+    public Event getEventDetail(int eid) {
+        return eventMapper.getEventDetail(eid);
+    }
 }
