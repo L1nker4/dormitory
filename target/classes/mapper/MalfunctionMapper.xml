@@ -8,6 +8,6 @@
     </select>
 
     <select id="getMalfunctionDetail" resultType="wang.l1n.dormitory.entity.Malfunction">
-        select context from tb_malfunction
+        select context from tb_malfunction where mid = #{id}
     </select>
 </mapper>

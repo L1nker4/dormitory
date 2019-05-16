@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>宿舍服务平台 | 控制面板</title>
+    <title>宿舍服务平台 | 广告管理</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" th:href="@{/asserts/css/bootstrap.min.css}"/>
 
     <link rel="stylesheet" th:href="@{/asserts/css/font-awesome.min.css}"/>
 
+    <link rel="stylesheet" th:href="@{/asserts/css/ionicons.min.css}"/>
+
     <link rel="stylesheet" th:href="@{/asserts/css/AdminLTE.min.css}"/>
 
-    <link rel="stylesheet" th:href="@{/asserts/css/skins/_all-skins.min.css}">
+    <link rel="stylesheet" th:href="@{/asserts/css/skins/_all-skins.min.css}"/>
+
+    <link rel="stylesheet" th:href="@{/asserts/plugins/iCheck/all.css}"/>
+
+    <link rel="stylesheet" th:href="@{/asserts/css/dataTables.bootstrap.min.css}"/>
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -22,7 +27,9 @@
     <header class="main-header">
         <!-- Logo -->
         <a href="/main" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>平台</b></span>
+            <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>宿舍服务平台</b></span>
         </a>
         <nav class="navbar navbar-static-top">
@@ -38,10 +45,12 @@
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <p>[[${session.username}]]
-
+                                <p>
+                                    [[${session.username}]]
                                 </p>
                             </li>
+
+                            <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">个人信息</a>
@@ -56,13 +65,14 @@
             </div>
         </nav>
     </header>
+    <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
         <section class="sidebar">
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">功能菜单</li>
-                <li class="treeview" shiro:hasRole="admin">
+                <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-users"></i> <span>学生管理</span>
+                        <i class="fa fa-users active"></i> <span>学生管理</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -74,13 +84,13 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-comments active"></i> <span>通知管理</span>
+                        <i class="fa fa-comments"></i> <span>通知管理</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/notification/index"><i class="fa fa-comment-o active"></i> 通知列表</a></li>
+                        <li><a href="/notification/index"><i class="fa fa-comment-o"></i> 通知列表</a></li>
                         <li><a href="/notification/add"><i class="fa fa-edit"></i> 通知发布</a></li>
                     </ul>
                 </li>
@@ -142,7 +152,7 @@
                         <li><a href="/student/add"><i class="fa fa-edit"></i> 发布签到</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="active treeview">
                     <a href="#">
                         <i class="fa fa-tasks"></i> <span>重要事件</span>
                         <span class="pull-right-container">
@@ -150,7 +160,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/event/list"><i class="fa fa-ticket"></i> 重要事件列表</a></li>
+                        <li class="active"><a href="/event/list"><i class="fa fa-ticket"></i> 重要事件列表</a></li>
                         <li><a href="/student/add"><i class="fa fa-edit"></i> 添加重要事件</a></li>
                     </ul>
                 </li>
@@ -212,48 +222,67 @@
                 <small></small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="/main"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li class="active">控制面板</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">事件管理</li>
             </ol>
         </section>
-        <section class="content">
 
+        <section class="content">
             <div class="row">
-                <div class="col-lg-3 col-xs-6">
-                    <div class="small-box bg-blue">
-                        <div class="inner text-center">
-                            <h3 th:text="${notification}">150</h3>
-                            <p>已发布通知</p>
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">事件列表</h3>
+
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-xs-6">
-                    <div class="small-box bg-aqua">
-                        <div class="inner text-center">
-                            <h3>12</h3>
-                            <p>广告管理</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-xs-6">
-                    <div class="small-box bg-orange">
-                        <div class="inner text-center">
-                            <h3>32</h3>
-                            <p>故障报修</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-xs-6">
-                    <div class="small-box bg-navy">
-                        <div class="inner text-center">
-                            <h3 th:text="${advice}">56</h3>
-                            <p>反馈建议</p>
+                        <div class="box-body">
+                            <table id="dataTable" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>标题</th>
+                                    <th>时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="events,stat:${events}">
+                                    <td th:text="${stat.index+1}"></td>
+                                    <td th:text="${events.title}">Misc</td>
+                                    <td th:text="${#dates.format(events.createTime,'yyyy-MM-dd hh:mm:ss')}">PSP browser</td>
+                                    <td>
+                                        <button type="button" class="btn btn-default btn-sm" th:onclick="getDetail([[${events.eid}]])">
+                                            <i class="fa fa-search">查看</i></button>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p>未选择任何数据</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">确定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
         </div>
@@ -272,5 +301,26 @@
 <script th:src="@{/asserts/js/adminlte.min.js}"></script>
 
 <script th:src="@{/asserts/js/dashboard.js}"></script>
+
+<script th:src="@{/asserts/app/app.js}"></script>
+
+<script th:src="@{/asserts/plugins/iCheck/icheck.min.js}"></script>
+
+<script th:src="@{/asserts/js/event/event.js}"></script>
+
+<script th:src="@{/asserts/js/jquery.dataTables.min.js}"></script>
+
+<script th:src="@{/asserts/js/dataTables.bootstrap.min.js}"></script>
+<script>
+    $(function () {
+        $("#dataTable").dataTable({
+            "searching": false,
+            "lengthChange": false,
+            "ordering": false,
+            "deferRender": true
+
+        });
+    })
+</script>
 </body>
 </html>
