@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wang.l1n.dormitory.mapper.AdviceMapper">
+    <resultMap id="AdviceMap" type="wang.l1n.dormitory.entity.Advice">
+        <id property="aid" column="aid"/>
+        <result property="title" column="title"/>
+        <result property="context" column="context"/>
+        <result property="createTime" column="create_time"/>
+        <collection property="student" ofType="wang.l1n.dormitory.entity.Student">
+            <result property="name" column="name"/>
+            <result property="classname" column="classname"/>
+            <result property="dormitory" column="dormitory"/>
+        </collection>
+
+    </resultMap>
+    <select id="selectAllAdvice" resultMap="AdviceMap">
+        SELECT tb_advice.aid,
+               tb_advice.title,
+               tb_advice.context,
+               tb_advice.create_time,
+               tb_student.`name`,
+               tb_student.classname,
+               tb_student.dormitory
+        FROM tb_advice
+                 INNER JOIN tb_student ON tb_advice.sid = tb_student.id
+    </select>
+
+    <select id="selectAdviceById" resultMap="AdviceMap">
+        SELECT tb_advice.aid,
+               tb_advice.title,
+               tb_advice.context,
+               tb_advice.create_time,
+               tb_student.`name`,
+               tb_student.classname,
+               tb_student.dormitory
+        FROM tb_advice
+                 INNER JOIN tb_student ON tb_advice.sid = tb_student.id
+        where aid = #{aid}
+    </select>
+
+    <insert id="addAdvice" parameterType="wang.l1n.dormitory.entity.Advice">
+        insert into tb_advice (title,context,create_time,sid) values (#{advice.title},#{advice.context},#{advice.createTime},#{advice.sid})
+    </insert>
+
+    <select id="getAdviceNum" resultType="int">
+        select count(*) from tb_advice as count
+    </select>
+</mapper>

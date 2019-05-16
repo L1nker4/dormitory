@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>宿舍服务平台 | 通知管理</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" th:href="@{/asserts/css/bootstrap.min.css}"/>
+
+    <link rel="stylesheet" th:href="@{/asserts/css/font-awesome.min.css}"/>
+
+    <link rel="stylesheet" th:href="@{/asserts/css/ionicons.min.css}"/>
+
+    <link rel="stylesheet" th:href="@{/asserts/css/AdminLTE.min.css}"/>
+
+    <link rel="stylesheet" th:href="@{/asserts/css/skins/_all-skins.min.css}">
+
+    <link rel="stylesheet" th:href="@{/asserts/plugins/iCheck/all.css}">
+    
+    <link rel="stylesheet" th:href="@{/asserts/css/dataTables.bootstrap.min.css}"/>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="/main" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>平台</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>宿舍服务平台</b></span>
+        </a>
+        <nav class="navbar navbar-static-top">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="hidden-xs">[[${session.username}]]</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <p>
+                                    [[${session.username}]]
+                                </p>
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">个人信息</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="/logout" class="btn btn-default btn-flat">注销</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">功能菜单</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-users"></i> <span>学生管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="/student/info"><i class="fa fa-user-circle"></i> 学生列表</a></li>
+                        <li><a href="/student/add"><i class="fa fa-edit"></i> 添加学生</a></li>
+                    </ul>
+                </li>
+                <li class="treeview active">
+                    <a href="#">
+                        <i class="fa fa-comments active"></i> <span>通知管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li th:class="active"><a href="/notification/index"><i class="fa fa-comment-o active"></i> 通知列表</a></li>
+                        <li><a href="/notification/add"><i class="fa fa-edit"></i> 通知发布</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list"></i> <span>广告管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/advertisement/index"><i class="fa fa-circle-o"></i> 广告列表</a></li>
+                        <li><a href="/advertisement/add"><i class="fa fa-edit"></i> 广告发布</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-file-text"></i> <span>意见反馈</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/advice/index"><i class="fa fa-list-ul"></i> 意见列表</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-weixin"></i> <span>小程序管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/student/info"><i class="fa fa-th-list"></i> 公众号信息</a></li>
+                        <li><a href="/student/add"><i class="fa fa-edit"></i> 测试</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-minus-square"></i> <span>故障信息</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/malfunction/list"><i class="fa fa-list-alt"></i> 故障列表</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-pencil"></i> <span>签到</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/student/info"><i class="fa fa-th-list"></i> 签到统计列表</a></li>
+                        <li><a href="/student/add"><i class="fa fa-edit"></i> 发布签到</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-tasks"></i> <span>重要事件</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/student/info"><i class="fa fa-ticket"></i> 重要事件列表</a></li>
+                        <li><a href="/student/add"><i class="fa fa-edit"></i> 添加重要事件</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-fire-extinguisher"></i> <span>消防器材</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/student/info"><i class="fa fa-info-circle"></i> 数据汇总</a></li>
+                        <li><a href="/student/add"><i class="fa fa-edit"></i> 添加检查</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-trash"></i> <span>卫生管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/student/info"><i class="fa fa-trash-o"></i> 宿舍卫生</a></li>
+                        <li><a href="/student/add"><i class="fa fa-edit"></i> 添加数据</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-flash"></i> <span>水电费管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/student/info"><i class="fa fa-table"></i> 数据汇总</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-gear"></i> <span>系统设置</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/student/info"><i class="fa fa-circle-o"></i> 测试</a></li>
+                        <li><a href="/student/add"><i class="fa fa-edit"></i> 测试</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </section>
+    </aside>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                控制面板
+                <small></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">学生管理</li>
+            </ol>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="alert alert-success alert-dismissible" th:if="${message}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        [[${message}]]
+                    </div>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">通知列表</h3>
+
+                        </div>
+                        <div class="box-body">
+                            <table id="dataTable" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>标题</th>
+                                    <th>发布人员</th>
+                                    <th>发布时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="notification:${notification}">
+                                    <td th:text="${notification.nid}">1</td>
+                                    <td th:text="${notification.title}">2019-4-30</td>
+                                    <td th:text="${notification.managerName}">admin</td>
+                                    <td th:text="${#dates.format(notification.createTime, 'yyyy-MM-dd hh:mm:ss')}"></td>
+                                    <td>
+                                        <button type="button" id="openDetail" class="btn btn-default btn-sm" th:onclick="getDetail([[${notification.nid}]])"><i
+                                                class="fa fa-search">查看</i></button>
+                                        <button type="button" class="btn btn-danger btn-sm" th:onclick="deleteOne([[${notification.nid}]])"><i
+                                                class="fa fa-trash">删除</i></button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+        </div>
+        <strong><a href="https://l1n.wang">L1nker4</a></strong>
+    </footer>
+
+</div>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="detailNotifaction">
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/asserts/js/jquery.min.js}"></script>
+
+<script th:src="@{/asserts/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/asserts/js/jquery.slimscroll.min.js}"></script>
+
+<script th:src="@{/asserts/js/fastclick.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/asserts/js/adminlte.min.js}"></script>
+
+<script th:src="@{/asserts/js/dashboard.js}"></script>
+
+<script th:src="@{/asserts/app/app.js}"></script>
+
+<script th:src="@{/asserts/plugins/iCheck/icheck.min.js}"></script>
+
+<script th:src="@{/asserts/js/notification/detail.js}"></script>
+
+<script th:src="@{/asserts/js/jquery.dataTables.min.js}"></script>
+
+<script th:src="@{/asserts/js/dataTables.bootstrap.min.js}"></script>
+<script>
+    $(function() {
+        $("#dataTable").dataTable({
+            "searching": false,
+            "lengthChange": false,
+            "ordering": false,
+            "deferRender": true
+
+        });
+    })
+</script>
+</body>
+</html>

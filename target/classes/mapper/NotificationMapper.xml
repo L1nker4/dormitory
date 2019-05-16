@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wang.l1n.dormitory.mapper.NotificationMapper">
+    <resultMap id="notificationMap" type="wang.l1n.dormitory.entity.Notification">
+        <id property="nid" column="nid"/>
+        <result property="title" column="title"/>
+        <result property="context" column="context"/>
+        <result property="createTime" column="create_time"/>
+        <result property="managerName" column="username"/>
+    </resultMap>
+
+    <insert id="insertNotification" parameterType="wang.l1n.dormitory.entity.Notification">
+        insert into tb_notification
+        values (#{nid}, #{title}, #{context}, #{mid}, #{createTime})
+    </insert>
+
+    <select id="selectAllNotification" resultMap="notificationMap">
+        select tb_notification.nid
+             , tb_notification.title
+             , tb_notification.context
+             , tb_notification.create_time
+             , tb_manager.username
+        from tb_notification
+                 inner join tb_manager
+                            ON tb_notification.mid = tb_manager.mid
+    </select>
+
+    <select id="selectNotificationById" resultType="wang.l1n.dormitory.entity.Notification">
+        select tb_notification.context
+        from tb_notification
+        where nid = #{nid}
+    </select>
+
+    <delete id="deleteById">
+        delete
+        from tb_notification
+        where nid = #{nid}
+    </delete>
+
+    <select id="getNumberOfNotification" resultType="int">
+        SELECT count(*) from tb_notification as count
+    </select>
+</mapper>
