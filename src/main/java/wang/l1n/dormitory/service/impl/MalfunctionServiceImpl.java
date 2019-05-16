@@ -23,4 +23,9 @@ public class MalfunctionServiceImpl implements MalfunctionService {
     public List<Malfunction> getMalfunctionList() {
         return malfunctionMapper.getMalfunctionList();
     }
+
+    @Override
+    public Malfunction getMalfunctionDetail(int id) {
+        return malfunctionMapper.getMalfunctionDetail(id);
+    }
 }

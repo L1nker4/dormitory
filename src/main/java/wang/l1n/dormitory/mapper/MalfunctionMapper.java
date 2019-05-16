@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MalfunctionMapper {
     List<Malfunction> getMalfunctionList();
+
+    Malfunction getMalfunctionDetail(int id);
 }

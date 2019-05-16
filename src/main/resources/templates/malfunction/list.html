@@ -254,7 +254,7 @@
                                     <td th:text="${malfunctions.dormitoryName}">PSP browser</td>
                                     <td th:text="${#dates.format(malfunctions.createTime, 'yyyy-MM-dd hh:mm:ss')}">PSP</td>
                                     <td>
-                                        <button type="button" class="btn btn-default btn-sm">
+                                        <button type="button" class="btn btn-default btn-sm" th:onclick="getDetail([[${malfunctions.mid}]])">
                                             <i class="fa fa-search">查看</i></button>
                                     </td>
                                 </tr>
@@ -271,10 +271,10 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">提示</h4>
+                    <h4 class="modal-title">详细内容</h4>
                 </div>
                 <div class="modal-body">
-                    <p>未选择任何数据</p>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
@@ -309,7 +309,7 @@
 
 <script th:src="@{/asserts/plugins/iCheck/icheck.min.js}"></script>
 
-<script th:src="@{/asserts/js/student/delete.js}"></script>
+<script th:src="@{/asserts/js/malfunction/malfunction.js}"></script>
 
 <script th:src="@{/asserts/js/jquery.dataTables.min.js}"></script>
 
