@@ -41,5 +41,9 @@ public class EventController {
         return baseResult;
     }
 
+    @RequestMapping("/add")
+    public String add(){
+        return "event/add";
+    }
 
 }
